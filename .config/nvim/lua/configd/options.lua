@@ -9,8 +9,8 @@ vim.opt.hlsearch = false
 
 -- Tabs and indentation
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = 8
+vim.opt.tabstop = 8
 vim.opt.smartindent = true
 
 -- UI and behavior

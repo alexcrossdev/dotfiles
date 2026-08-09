@@ -13,12 +13,12 @@ map({"n", "x"}, "<leader>xx", vim.cmd.wq, { desc = "Write and quit file" })
 -- Navigation
 local modes = { "n", "i", "v" }
 for _, mode in ipairs(modes) do
-    map(mode, "<Up>", "<Nop>", { silent = true })
-    map(mode, "<Down>", "<Nop>", { silent = true })
-    map(mode, "<Left>", "<Nop>", { silent = true })
-    map(mode, "<Right>", "<Nop>", { silent = true })
-    map(mode, "<BS>", "<Nop>", { silent = true })
-    map(mode, "<Del>", "<Nop>", { silent = true })
+        map(mode, "<Up>", "<Nop>", { silent = true })
+        map(mode, "<Down>", "<Nop>", { silent = true })
+        map(mode, "<Left>", "<Nop>", { silent = true })
+        map(mode, "<Right>", "<Nop>", { silent = true })
+        map(mode, "<BS>", "<Nop>", { silent = true })
+        map(mode, "<Del>", "<Nop>", { silent = true })
 end
 
 map("n", "<C-h>", "<C-w>h")
