@@ -1,0 +1,103 @@
+{
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/nova.txt",
+    "color": {
+      "1": "bright_magenta",
+      "2": "cyan",
+      "3": "blue",
+      "4": "green"
+    }
+  },
+  "display": {
+    "separator": " ",
+    "color": {
+      "keys": "cyan",
+      "title": "bright_magenta",
+      "output": "white"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "key": "OS",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime",
+      "keyColor": "green"
+    },
+    {
+      "type": "shell",
+      "key": "Shell",
+      "keyColor": "blue"
+    },
+    "break",
+    {
+      "type": "wm",
+      "key": "WM",
+      "keyColor": "green"
+    },
+    "break",
+    {
+      "type": "cpu",
+      "key": "CPU",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "gpu",
+      "key": "GPU",
+      "keyColor": "blue"
+    },
+    {
+      "type": "memory",
+      "key": "RAM",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "battery",
+      "key": "Battery",
+      "keyColor": "green"
+    },
+    "break",
+    {
+      "type": "disk",
+      "key": "System",
+      "folders": "/",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "key": "Nix",
+      "folders": "/nix",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "key": "Home",
+      "folders": "/home",
+      "keyColor": "magenta"
+    },
+    {
+      "type": "disk",
+      "keyColor": "green",
+      "folders": [
+        "/dev/media/alex"
+      ]
+    },
+    "break",
+    {
+      "type": "localip",
+      "key": "IP",
+      "keyColor": "cyan"
+    }
+  ]
+}

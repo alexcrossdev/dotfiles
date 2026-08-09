@@ -1,0 +1,11 @@
+[Unit]
+Description=Update fastfetch when drives mount
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/fastfetch-mount-watcher.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target
