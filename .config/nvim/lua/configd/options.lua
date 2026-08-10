@@ -8,7 +8,7 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = false
 
 -- Tabs and indentation
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.shiftwidth = 8
 vim.opt.tabstop = 8
 vim.opt.smartindent = true
@@ -55,4 +55,4 @@ vim.opt.shortmess:append("c")
 
 -- Virtual text
 vim.opt.breakindent = true
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
