@@ -1,4 +1,5 @@
 require("configd.options")
+require("configd.lazy")
 require("configd.keymaps")
 require("configd.autocmds")
-require("configd.vimpack")
+--require("configd.vimpack")

@@ -32,14 +32,32 @@ map("n", "<leader>sv", ":vsplit<cr>")
 -- Search and move
 map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open Netrw" })
 
+require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = {
+				['<BS>'] = function()
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<BS>', true, false, true), 'n', true)
+				end,
+			},
+		},
+	},
+})
+
+local tele = require("telescope.builtin")
+map("n", "<leader>pf", tele.find_files, { desc = "Telescope find files" })
+map("n", "<leader>pg", tele.live_grep, { desc = "Telescope grep" })
+map("n", "<leader>pb", tele.buffers, { desc = "Telescope buffers" })
+map("n", "<leader>pf", tele.find_files, { desc = "Telescope find files" })
+
 -- Man
 map("n", "<leader>mp", ":vert Man", { desc = "Man buffer" })
 
 -- Toggle Terminal
 require("toggleterm").setup({
-	open_mapping = [[<C-\>]],
-	direction = "float",
-	float_opts = {
-		border = "rounded",
-	},
+  open_mapping = [[<C-\>]],
+  direction = "float",
+  float_opts = {
+    border = "rounded",
+  },
 })
