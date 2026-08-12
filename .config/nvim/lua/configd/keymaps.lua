@@ -34,3 +34,12 @@ map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open Netrw" })
 
 -- Man
 map("n", "<leader>mp", ":vert Man", { desc = "Man buffer" })
+
+-- Toggle Terminal
+require("toggleterm").setup({
+	open_mapping = [[<C-\>]],
+	direction = "float",
+	float_opts = {
+		border = "rounded",
+	},
+})

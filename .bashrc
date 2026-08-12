@@ -7,45 +7,44 @@
 
 source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 
+source $HOME/.bashenv
+
+export EDITOR="nvim"
+
 alias ls='ls --color=auto'
+alias ll='ls -alh'
 alias grep='grep --color=auto'
+
+alias ..='cd ..'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-# Git status parser for the prompt
 parse_git_status() {
-        # Check if in git repository
         if ! git rev-parse --is-inside-work-tree &>/dev/null; then
                 return
         fi
 
-        # Get branch name
         local BRANCH=$(git branch --show-current 2>/dev/null)
         if [ -z "$BRANCH" ]; then
                 # Fallback for detached HEAD
                 BRANCH=$(git rev-parse --short HEAD 2>/dev/null)
         fi
 
-        # Fetch raw status data
         local STATUS=$(git status --porcelain 2>/dev/null)
         local GIT_DIRTY=""
 
-        # Check for changes to be committed (Staged)
         if echo "$STATUS" | grep -q '^[A-Z]'; then
-                GIT_DIRTY="${GIT_DIRTY}*" # Clean star indicator for staged
+                GIT_DIRTY="${GIT_DIRTY}*"
         fi
 
-        # Check for changes not staged for commit (Modified)
         if echo "$STATUS" | grep -q '^.[A-Z]'; then
-                GIT_DIRTY="${GIT_DIRTY}+" # Low-profile standard plus sign for modified
+                GIT_DIRTY="${GIT_DIRTY}+"
         fi
 
-        # Check for untracked files
         if echo "$STATUS" | grep -q '??'; then
-                GIT_DIRTY="${GIT_DIRTY}?" # Clean question mark for untracked
+                GIT_DIRTY="${GIT_DIRTY}?"
         fi
 
-        # Check upstream status (ahead/behind tracking for push/pull)
         local UPSTREAM=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null)
         if [ -n "$UPSTREAM" ]; then
                 local LOCAL=$(git rev-parse @ 2>/dev/null)
@@ -55,15 +54,14 @@ parse_git_status() {
                 if [ "$LOCAL" = "$REMOTE" ]; then
                         :
                 elif [ "$LOCAL" = "$BASE" ]; then
-                        GIT_DIRTY="${GIT_DIRTY}v" # Low-profile down-arrow alternative
+                        GIT_DIRTY="${GIT_DIRTY}v"
                 elif [ "$REMOTE" = "$BASE" ]; then
-                        GIT_DIRTY="${GIT_DIRTY}^" # Low-profile up-arrow alternative
+                        GIT_DIRTY="${GIT_DIRTY}^"
                 else
-                        GIT_DIRTY="${GIT_DIRTY}x" # Cross for diverged
+                        GIT_DIRTY="${GIT_DIRTY}x"
                 fi
         fi
 
-        # Format output wrapper matching Gruvbox styling
         if [ -n "$GIT_DIRTY" ]; then
                 echo " (git:$BRANCH $GIT_DIRTY)"
         else
@@ -71,7 +69,6 @@ parse_git_status() {
         fi
 }
 
-# Nix Flake environment parser for the prompt
 parse_nix_flake() {
         if [ -n "$FLAKE_NAME" ]; then
                 echo " (nix:$FLAKE_NAME)"
@@ -79,4 +76,3 @@ parse_nix_flake() {
 }
 
 PS1="\$(EXIT=\$?; if [ \$EXIT -eq 0 ]; then echo \"\[\e[38;5;243m\][\$EXIT]\"; else echo \"\[\e[1;38;5;167m\][\$EXIT]\"; fi)\[\e[m\] \[\e[38;5;142m\]\u\[\e[m\]@\[\e[38;5;108m\]\h \[\e[38;5;214m\]\w\[\e[38;5;109m\]\$(parse_nix_flake)\[\e[38;5;167m\]\$(parse_git_status)\[\e[m\] \$ "
-
