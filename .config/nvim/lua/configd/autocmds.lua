@@ -28,3 +28,11 @@ create_cmd("LspAttach", {
           	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 	end,
 })
+
+create_cmd("FileType", {
+	pattern = { "javascript", "typescript", "typescriptreact", "html", "css" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end,
+})

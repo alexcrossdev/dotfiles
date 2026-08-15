@@ -75,4 +75,15 @@ parse_nix_flake() {
         fi
 }
 
+nvim() {
+	if [ -d "$1" ]; then
+		(
+			cd "$1" || return
+			command nvim .
+		)
+	else
+		command nvim "$@"
+	fi
+}
+
 PS1="\$(EXIT=\$?; if [ \$EXIT -eq 0 ]; then echo \"\[\e[38;5;243m\][\$EXIT]\"; else echo \"\[\e[1;38;5;167m\][\$EXIT]\"; fi)\[\e[m\] \[\e[38;5;142m\]\u\[\e[m\]@\[\e[38;5;108m\]\h \[\e[38;5;214m\]\w\[\e[38;5;109m\]\$(parse_nix_flake)\[\e[38;5;167m\]\$(parse_git_status)\[\e[m\] \$ "
