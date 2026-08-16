@@ -69,6 +69,14 @@ parse_git_status() {
         fi
 }
 
+parse_cronus_status() {
+	if ! cronus parse --is-in-working-tree &>/dev/null; then
+		return
+	fi
+
+	echo " (cronus:master)"
+}
+
 parse_nix_flake() {
     if [[ -f "flake.nix" && ! -v FLAKE ]]; then
         echo -e " \033[38;5;242m[flake]\033[0m"
@@ -88,4 +96,6 @@ nvim() {
 	fi
 }
 
-PS1="\$(EXIT=\$?; if [ \$EXIT -eq 0 ]; then echo \"\[\e[38;5;243m\][\$EXIT]\"; else echo \"\[\e[1;38;5;167m\][\$EXIT]\"; fi)\[\e[m\] \[\e[38;5;142m\]\u\[\e[m\]@\[\e[38;5;108m\]\h \[\e[38;5;214m\]\w\$(parse_nix_flake)\[\e[38;5;167m\]\$(parse_git_status)\[\e[m\] \$ "
+PS1="\$(EXIT=\$?; if [ \$EXIT -eq 0 ]; then echo \"\[\e[38;5;243m\][\$EXIT]\"; else echo \"\[\e[1;38;5;167m\][\$EXIT]\"; fi)\[\e[m\] \[\e[38;5;142m\]\u\[\e[m\]@\[\e[38;5;108m\]\h \[\e[38;5;214m\]\w\$(parse_nix_flake)\[\e[38;5;74m\]\$(parse_cronus_status)\[\e[38;5;167m\]\$(parse_git_status)\[\e[m\] \$ "
+
+export PATH=$PATH:/home/alex/.spicetify
