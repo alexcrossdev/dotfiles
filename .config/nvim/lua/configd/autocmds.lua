@@ -36,3 +36,11 @@ create_cmd("FileType", {
 		vim.opt_local.shiftwidth = 2
 	end,
 })
+
+create_cmd("FileType", {
+	pattern = { "lua", "qml"},
+	callback = function()
+		vim.opt_local.tabstop = 4
+		vim.opt_local.shiftwidth = 4
+	end,
+})

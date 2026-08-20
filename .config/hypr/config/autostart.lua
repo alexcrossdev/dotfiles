@@ -1,4 +1,5 @@
 hl.on("hyprland.start", function ()
     hl.exec_cmd("hyprctl setcursor rose-pine-hyprcursor 24")
     hl.exec_cmd("udiskie")
+    hl.exec_cmd("awww-daemon")
 end)

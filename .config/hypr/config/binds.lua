@@ -22,5 +22,12 @@ hl.bind(MOD .. "Tab", hl.dsp.window.swap({ next = true }))
 
 -- Programs
 hl.bind(MOD .. "Return", hl.dsp.exec_cmd("alacritty"))
-hl.bind(MOD .. "F", hl.dsp.exec_cmd("firefox"))
+hl.bind(MOD .. "F", hl.dsp.exec_cmd("helium"))
 hl.bind(MOD .. "W", hl.dsp.exec_cmd("alacritty -e yazi"))
+
+-- Hyprshot
+hl.bind(MOD .. "S", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(MOD_S .. "S", hl.dsp.exec_cmd("hyprshot -m region"))
+
+hl.bind(MOD .. "CTRL + S", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
+hl.bind(MOD_S .. "CTRL + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))

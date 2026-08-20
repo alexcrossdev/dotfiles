@@ -1,4 +1,4 @@
-return {
+--[[return {
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
@@ -7,4 +7,5 @@ return {
       vim.cmd.colorscheme("gruvbox")
     end,
   },
-}
+}]]
+return {}

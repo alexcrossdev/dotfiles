@@ -1,3 +1,28 @@
+local function load_pywal_colors()
+  local colors = {}
+  local wal = os.getenv("HOME") .. "/.cache/wal/colors.sh"
+  local f = io.open(wal, "r")
+  if not f then return colors end
+
+  for line in f:lines() do
+    local n, hex = line:match("^color(%d%d?)='(#[%da-fA-F]+)'")
+    if n and hex then
+      colors[tonumber(n)] = hex
+    end
+  end
+
+  f:close()
+  return colors
+end
+
+local wal = load_pywal_colors()
+
+local function rgba_from_hex(hex, alpha)
+  if not hex then return nil end
+  local c = hex:gsub("#", "")
+  return ("rgba(%s%s)"):format(c, alpha) -- rgba(RRGGBBAA) style
+end
+
 hl.config({
     general = {
         gaps_in  = 6,
@@ -5,8 +30,14 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(fabd2ffb)", "rgba(8ec07cfb)"}, angle = 45 },
-            inactive_border = "rgba(3c3836aa)",
+            active_border   = {
+				colors = {
+					rgba_from_hex(wal[4], "ff"),
+					rgba_from_hex(wal[1], "ff"),
+				},
+				angle = 45
+			},
+            inactive_border = rgba_from_hex(wal[8], "aa"),
         },
 
         resize_on_border = false,

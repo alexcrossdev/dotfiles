@@ -2,12 +2,6 @@
   "logo": {
     "type": "file",
     "source": "~/.config/fastfetch/nova.txt",
-    "color": {
-      "1": "bright_magenta",
-      "2": "cyan",
-      "3": "blue",
-      "4": "green"
-    }
   },
   "display": {
     "separator": " ",
